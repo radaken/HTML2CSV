@@ -1,19 +1,11 @@
 from email.mime import message
-import io
 import logging
-from nntplib import ArticleInfo
-from pickle import TRUE
-from site import USER_BASE
-from telnetlib import SEND_URL
-from tkinter import Menu, Message
 from typing import Dict
 from aiogram import Bot, Dispatcher, executor, types
 import requests
 from bs4 import BeautifulSoup
 import lxml
-from aiogram.types import InputFile
 import json
-import random
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
 #задаем переменную бота для обращения в телегу по токену
