@@ -13,7 +13,7 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
 #задаем переменную бота для обращения в телегу по токену
 TOKEN = None
-with open("C:/Users/applm/OneDrive/Рабочий стол/BOT/TOKEN.txt") as f:
+with open("C:/Users/applm/OneDrive/Рабочий стол/project BOT/TOKEN.txt") as f:
     TOKEN = f.read().strip()
 
 bot = Bot (TOKEN)
