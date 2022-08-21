@@ -1,6 +1,5 @@
-from cgitb import text
 from ctypes.wintypes import MSG
-from email import message, message_from_string
+from email import message
 import logging
 import string
 from typing import Dict, Text
@@ -48,28 +47,28 @@ async def start  (message: types.Message):
     await bot.send_sticker(message.chat.id,"CAACAgIAAxkBAAEFiWli9TsP9B1BLa8HrEqL51EtH4UQEAACnhYAArpIyUtcjAeK6Rs_SykE")
 
 #парсер с выводом
-
-#@dp.message_handler (commands = ['Получить свежачок'])
+@dp.message_handler (commands = ['news'])
 async def news (message: types.Message):
     url = ("https://www.cybersport.ru/tags/dota-2")
-    r = requests.get (url)
+    r = requests.get (url=url)
     soup = BeautifulSoup (r.text, "lxml")
-    rounded_block = soup.find_all (class_="container_qPDo5")
+    rounded_block = soup.find_all (class_="rounded-block root_d51Rr with-hover no-padding no-margin")
     for round in rounded_block:
-        round_title = round.find ( class_="title_nSS03").text   
+        round_title = round.find (class_="title_nSS03").text
         round_data = round.find (class_="pub_AKjdn").text
-        round_url = f'https://www.cybersport.ru/tags/dota-2{round.find_all("href")}'
+        round_link = round.find (class_="link_CocWY")
+        round_url = f'https://www.cybersport.ru/tags/dota-2{round_link.get("href")}'
         print (round_data,round_title,round_url)
-        news_dict = {
+        round_id = round_url.split("/")[-1]
+        news_dict [round_id] = {
             "time": round_data,
             "title": round_title,
             "url": round_url
-            }
-
+        }
     with open ("news_dict.json","w",encoding='utf-8') as file:
         json.dump(news_dict, file, indent=4, ensure_ascii=False)
 
-#@dp.message_handler (commands = ['Получить китика <3'])
+@dp.message_handler (commands = ['Получить китика <3'])
 async def kitik (message:types.Message):
     await bot.send_sticker (message.from_user.id, "CAACAgIAAxkBAAEFiWli9TsP9B1BLa8HrEqL51EtH4UQEAACnhYAArpIyUtcjAeK6Rs_SykE")
 
