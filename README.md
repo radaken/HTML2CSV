@@ -19,10 +19,10 @@ Results:
 - [x] Parse files
 - [x] Сustomizable tags and classes
 - [x] .gitignored path (needs to writed yourself)
-- [] Warning (or asking and autogenerate) losed path variable
-- [] Write something into csv file
-- [] Asking about rewriting previus .csv file
-- [] Online (URL) support?
+- [ ] Warning (or asking and autogenerate) losed path variable
+- [ ] Write something into csv file
+- [ ] Asking about rewriting previus .csv file
+- [ ] Online (URL) support?
 
 ... write next things soon
 
